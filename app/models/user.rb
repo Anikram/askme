@@ -21,6 +21,7 @@ class User < ApplicationRecord
   validates_length_of :username, :minimum => 6, :maximum => 20 #49-1 - username length validation
 
   before_save :encrypt_password
+  before_save :downcase_username# 49-2 - adjust username format
 
   def encrypt_password
     if self.password.present?
@@ -30,6 +31,12 @@ class User < ApplicationRecord
       self.password_hash = User.hash_to_string(
                                  OpenSSL::PKCS5.pbkdf2_hmac(self.password, self.password_salt, ITERATIONS, DIGEST.length, DIGEST)
       )
+    end
+  end
+
+  def downcase_username  # 49-2 - adjust username format
+    if self.username.present?
+      self.username.downcase!
     end
   end
 
