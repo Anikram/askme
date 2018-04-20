@@ -2,6 +2,8 @@ require 'openssl'
 
 class User < ApplicationRecord
 
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  VALID_USERNAME_REGEX = /[0-9a-zA-Z_]+/i
   ITERATIONS = 20000
   DIGEST = OpenSSL::Digest::SHA256.new
 
@@ -14,6 +16,9 @@ class User < ApplicationRecord
 
   validates_presence_of :password, on: :create
   validates_confirmation_of :password
+  validates_format_of :email, :with => VALID_EMAIL_REGEX #49-1 - email format validation
+  validates_format_of :username, :with => VALID_USERNAME_REGEX #49-1 - username format validation
+  validates_length_of :username, :minimum => 6, :maximum => 20 #49-1 - username length validation
 
   before_save :encrypt_password
 
@@ -42,5 +47,4 @@ class User < ApplicationRecord
       nil
     end
   end
-
 end
