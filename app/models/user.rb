@@ -9,8 +9,7 @@ class User < ApplicationRecord
 
   has_many :question
 
-  validates :email, :username, presence: true
-  validates :email, :username, uniqueness: true
+  validates :email, :username, presence: true, uniqueness: true
 
   attr_accessor :password
 
@@ -20,8 +19,9 @@ class User < ApplicationRecord
   validates_format_of :username, :with => VALID_USERNAME_REGEX #49-1 - username format validation
   validates_length_of :username, :minimum => 6, :maximum => 20 #49-1 - username length validation
 
+  before_validation :downcase_username# 49-2 - adjust username format
+
   before_save :encrypt_password
-  before_save :downcase_username# 49-2 - adjust username format
 
   def encrypt_password
     if self.password.present?
