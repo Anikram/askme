@@ -14,7 +14,7 @@ before_action :authorize_user, except: [:create]
     if @question.save
       redirect_to user_path(@question.user), notice: 'Вопрос задан.'
     else
-      render :new
+      render :edit
     end
   end
 
