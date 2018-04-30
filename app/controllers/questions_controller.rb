@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :load_question, only: [:show, :edit, :update, :destroy]
-before_action :authorize_user, except: [:create]
+  before_action :authorize_user, except: [:create]
 
 
   # GET /questions/1/edit
@@ -10,6 +10,8 @@ before_action :authorize_user, except: [:create]
   # POST /questions
   def create
     @question = Question.new(question_params)
+
+    @question.author = current_user if current_user.present?
 
     if @question.save
       redirect_to user_path(@question.user), notice: 'Вопрос задан.'
