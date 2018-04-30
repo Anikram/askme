@@ -3,6 +3,7 @@ class QuestionsController < ApplicationController
 before_action :authorize_user, except: [:create]
 
 
+
   # GET /questions/1/edit
   def edit
   end
@@ -10,6 +11,10 @@ before_action :authorize_user, except: [:create]
   # POST /questions
   def create
     @question = Question.new(question_params)
+
+    unless  @user.settings[:bgcolor]
+      @user.settings[:bgcolor] = '#005a55'
+    end
 
     if @question.save
       redirect_to user_path(@question.user), notice: 'Вопрос задан.'
@@ -53,4 +58,5 @@ before_action :authorize_user, except: [:create]
         params.require(:question).permit(:user_id, :text)
       end
     end
+
 end

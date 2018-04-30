@@ -20,3 +20,7 @@ $(function(){
         return false;
     });
 });
+
+$(function(){
+        $(".user-header").style.backgroundColor = $('#get_color').val();
+    })

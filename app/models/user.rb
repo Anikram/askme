@@ -11,15 +11,16 @@ class User < ApplicationRecord
 
   validates :email, :username, presence: true, uniqueness: true
 
-  attr_accessor :password
+  attr_accessor :password, :bgcolor
 
   validates_presence_of :password, on: :create
   validates_confirmation_of :password
   validates_format_of :email, :with => VALID_EMAIL_REGEX #49-1 - email format validation
   validates_format_of :username, :with => VALID_USERNAME_REGEX #49-1 - username format validation
   validates_length_of :username, :minimum => 6, :maximum => 20 #49-1 - username length validation
+  validates :bgcolor, format: {with: /\A#[\da-fA-F]{6}\z/ }
 
-  before_validation :downcase_username# 49-2 - adjust username format
+  before_validation :downcase_username # 49-2 - adjust username format
 
   before_save :encrypt_password
 

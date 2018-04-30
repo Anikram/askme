@@ -30,6 +30,11 @@
         </div>
 
         <div class="form-field">
+          <%= f.label :bgcolor, 'Цвет фона страницы (hex)', class: 'form-label' %>
+          <%= f.text_field :bgcolor, class: 'form-text-field' %>
+        </div>
+
+        <div class="form-field">
           <%= f.label :password, 'Пароль', class: 'form-label' %>
           <%= f.password_field :password, class: 'form-text-field' %>
         </div>
