@@ -29,6 +29,13 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def destroy
+    session[:user_id] = nil
+    if @user.destroy
+      redirect_to root_url, notice: 'Вы успешно удалили свой профиль!'
+    end
+  end
+
   def update
     if @user.update(user_params)
       redirect_to user_path(@user), notice: 'Данные обновлены.'

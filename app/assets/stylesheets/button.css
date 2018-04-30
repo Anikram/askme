@@ -17,11 +17,13 @@
 .button-dark {
     background: #2e2f41;
     color: #fff;
+    margin-bottom: 10px;
 }
 
 .button-green {
     background: #005a55;
     color: #fff;
+    margin-bottom: 10px;
 }
 
 .button-light {
