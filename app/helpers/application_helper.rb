@@ -34,10 +34,10 @@ module ApplicationHelper
   end
 
   def bg_color(user)
-    if user[:bgcolor].present?
-      user[:bgcolor]
+    if user.bgcolor.present?
+      user.bgcolor
     else
-      user[:bgcolor] = "#005a55"
+      user.bgcolor = "#005a55"
     end
   end
 end
