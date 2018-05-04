@@ -11,7 +11,7 @@ class User < ApplicationRecord
 
   validates :email, :username, presence: true, uniqueness: true
 
-  attr_accessor :password, :bgcolor
+  attr_accessor :password
 
   validates_presence_of :password, on: :create
   validates_confirmation_of :password
