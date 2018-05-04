@@ -6,7 +6,11 @@
   <% @users.each do |user| %>
     <div class="users-list-item">
       <div class="user-image-div user-image-div-small">
-        <%=  link_to image_tag(user_avatar(user), class: 'user-image'), user_path(user)	  %>
+        <% begin %>
+          <%=  link_to image_tag(user_avatar(user), { class: 'user-image', alt: 'photo'}), user_path(user)	  %>
+        <% rescue %>
+          <%= link_to image_tag(asset_path('avatar.png'),class: 'user-image'), user_path(user) %>
+        <% end %>
       </div>
     </div>
   <%	 end %>

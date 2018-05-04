@@ -11,7 +11,11 @@
   <div class="user-image-div">
     <%# Рисуем аватарку пользователя. Мы используем хелперы image_tag, %>
     <%# встроенный в rails, и наш user_avatar %>
-    <%= image_tag user_avatar(@user), class: 'user-image', alt: '[Фото]' %>
+    <% begin  %>
+      <%= image_tag user_avatar(@user), class: 'user-image', alt: '[Фото]' %>
+    <% rescue %>
+      <%= link_to image_tag(asset_path('avatar.png'),class: 'user-image'), user_path(@user) %>
+    <% end %>
   </div>
 
   <h2 class="title-small buffer-both">
