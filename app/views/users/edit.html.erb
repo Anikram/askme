@@ -25,6 +25,10 @@
           <%= f.label 'URL вашей аватарки', class: 'form-label' %>
           <%= f.text_field :avatar_url, class: 'form-text-field' %>
         </div>
+        <div class="form-field">
+          <%= f.label :bgcolor, 'Цвет фона страницы (hex)', class: 'form-label' %>
+          <%= f.text_field :bgcolor, class: 'form-text-field' %>
+        </div>
 
         <div class="buffer-top-large buffer-bottom">
           Если не хотите менть пароль - оставьте эти поля пустыми!

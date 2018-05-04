@@ -19,8 +19,9 @@ class User < ApplicationRecord
   validates_format_of :username, :with => VALID_USERNAME_REGEX #49-1 - username format validation
   validates_length_of :username, :minimum => 6, :maximum => 20 #49-1 - username length validation
   validates_format_of :avatar_url, :with => /\.png|\.jpg/, on: :update
+  validates :bgcolor, format: {with: /\A#[\da-fA-F]{6}\z/ }
 
-  before_validation :downcase_username# 49-2 - adjust username format
+  before_validation :downcase_username # 49-2 - adjust username format
 
   before_save :encrypt_password
 

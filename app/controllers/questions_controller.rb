@@ -3,6 +3,7 @@ class QuestionsController < ApplicationController
   before_action :authorize_user, except: [:create]
 
 
+
   # GET /questions/1/edit
   def edit
   end
@@ -12,6 +13,10 @@ class QuestionsController < ApplicationController
     @question = Question.new(question_params)
 
     @question.author = current_user if current_user.present?
+
+    #unless  @user.settings[:bgcolor]
+    #  @user.settings[:bgcolor] = '#005a55'
+    #end
 
     if @question.save
       redirect_to user_path(@question.user), notice: 'Вопрос задан.'
@@ -55,4 +60,5 @@ class QuestionsController < ApplicationController
         params.require(:question).permit(:user_id, :text)
       end
     end
+
 end
