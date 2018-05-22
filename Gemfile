@@ -17,6 +17,9 @@ gem 'puma', '~> 3.7'
 
 gem 'jquery-rails'
 # Use SCSS for stylesheets
+gem 'recaptcha', require: 'recaptcha/rails'
+
+gem 'invisible_captcha'
 
 group :production do
   gem 'pg'

@@ -1,7 +1,8 @@
 class Question < ApplicationRecord
 
-  belongs_to :user
+  attr_accessor :namee #-invisible Captcha settings
 
+  belongs_to :user
   belongs_to :author, class_name: 'User', optional: true
 
   validates :text, :user, presence: true
