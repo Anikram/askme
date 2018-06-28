@@ -4,7 +4,6 @@ class QuestionsController < ApplicationController
   invisible_captcha honeypot: :namee, only: [:create, :update], on_spam: :spam_detected, timestamp_enabled: false
 
 
-
   # GET /questions/1/edit
   def edit
   end
@@ -13,11 +12,9 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
 
+
     @question.author = current_user if current_user.present?
 
-    #unless  @user.settings[:bgcolor]
-    #  @user.settings[:bgcolor] = '#005a55'
-    #end
 
     if @question.save
       redirect_to user_path(@question.user), notice: 'Вопрос задан.'
@@ -47,10 +44,12 @@ class QuestionsController < ApplicationController
     def authorize_user
       reject_user unless @question.user == current_user
     end
+
     # Use callbacks to share common setup or constraints between actions.
     def load_question
       @question = Question.find(params[:id])
     end
+
     # Only allow a trusted parameter "white list" through.
     def question_params
       if current_user.present? && params[:question][:user_id].to_i == current_user.id
@@ -59,6 +58,7 @@ class QuestionsController < ApplicationController
         params.require(:question).permit(:user_id, :text, :namee)
       end
     end
+
     def spam_detected
       redirect_to root_path, alert: 'Сработала спам-защита'
     end
