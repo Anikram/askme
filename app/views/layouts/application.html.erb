@@ -28,19 +28,20 @@
       </div>
     </div>
 
-    <div class="content">
-      <div class="container">
-        <% if flash.any? %>
-          <div class="content-wrapper buffer-both">
-            <% flash.each do |name, message| %>
-              <%= content_tag :div, message, class: "flash-#{name}" %>
-            <% end %>
-          </div>
-        <% end %>
+     <div class="row">
+      <div class="content">
+        <div class="container">
+          <% if flash.any? %>
+            <div class="content-wrapper buffer-both">
+              <% flash.each do |name, message| %>
+                <%= content_tag :div, message, class: "flash-#{name}" %>
+              <% end %>
+            </div>
+          <% end %>
 
-        <%= yield %>
+          <%= yield %>
+        </div>
       </div>
-    </div>
-
+     </div>
   </body>
 </html>

@@ -3,5 +3,7 @@ class Hashtag < ApplicationRecord
 
   validates :name, uniqueness: true
 
-  validates_format_of :name, with: /\A[\d\wа-я]{1,30}\z/
+  validates_format_of :name, with: /\A[\d\wа-я]{1,30}\z/i
+
+  validates_format_of :name, without: /\A\w*\z/i
 end

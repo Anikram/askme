@@ -13,5 +13,16 @@
         <% end %>
       </div>
     </div>
-  <%	 end %>
+  <% end %>
+
+
+  <div class="row">
+    <div class="buffer-both">
+      <%= @hashtags.each do |hashtag| %>
+        <%= render partial: 'hashtags/hashtag', object: hashtag %>
+      <% end %>
+    </div>
+  </div>
+
+
 </div>

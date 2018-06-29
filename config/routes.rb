@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'hashtags/show/:name', to: 'hashtags#show'
+
   root 'users#index'
 
   resources :users
