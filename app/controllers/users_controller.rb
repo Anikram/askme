@@ -6,9 +6,6 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @hashtags = hashtags_with_questions
-    redirect_to root_url, alert: 'Вы уже злогинены' if current_user.present?
-
-    @user = User.new
   end
 
   def new
