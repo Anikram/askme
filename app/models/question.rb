@@ -12,6 +12,7 @@ class Question < ApplicationRecord
 
   before_save :create_question_hashtags
 
+
   def create_question_hashtags
     self.hashtags.clear
 
@@ -41,5 +42,4 @@ class Question < ApplicationRecord
 
     hashed_words
   end
-
 end

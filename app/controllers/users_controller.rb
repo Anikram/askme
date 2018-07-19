@@ -5,10 +5,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @hashtags = Hashtag.all.map(&:name)
-  end
-
-  def new
+    @hashtags = hashtags_with_questions
     redirect_to root_url, alert: 'Вы уже злогинены' if current_user.present?
 
     @user = User.new
@@ -67,5 +64,23 @@ class UsersController < ApplicationController
 
   def authorize_user
     reject_user unless @user == current_user
+  end
+
+  def return_hashtags_with_questions
+    hashtags = Hashtag.all
+    questions = Question.all
+    hash_array = []
+
+    hashtags.each do |tag|
+      questions.each do |question|
+        hash_array << tag if question.hashtags.any?
+      end
+    end
+
+    hash_array.uniq
+  end
+
+  def hashtags_with_questions
+    Hashtag.joins(:questions).where("question_id IS NOT NULL")
   end
 end
