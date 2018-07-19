@@ -11,6 +11,12 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def new
+    redirect_to root_url, alert: 'Вы уже злогинены' if current_user.present?
+
+    @user = User.new
+  end
+
   def create
     redirect_to root_url, alert: 'Вы уже злогинены' if current_user.present?
 
