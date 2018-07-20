@@ -18,7 +18,7 @@
 
   <div class="row">
     <div class="buffer-both">
-      <% @hashtags.each do |hashtag| %>
+      <% @hashtags.uniq.each do |hashtag| %>
         <%= render partial: 'hashtags/hashtag', object: hashtag %>
       <% end %>
     </div>

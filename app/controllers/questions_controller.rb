@@ -12,8 +12,9 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
 
-
     @question.author = current_user if current_user.present?
+
+    @question.create_question_hashtags
 
 
     if @question.save

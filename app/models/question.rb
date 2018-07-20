@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 class Question < ApplicationRecord
 
   attr_accessor :namee #-invisible Captcha settings
@@ -29,14 +31,18 @@ class Question < ApplicationRecord
     text_array = self.text.split
 
     text_array.each do |word|
-      hashed_words << word if (word =~ /#/) == 0
+       unless (word =~ /#[A-Za-zа-яА-Я]{1,30}/) == nil
+         hashed_words << word.delete('#') if (word =~ /[?!]+/) == nil
+       end
     end
 
     unless self.answer.nil?
       answer_array = self.answer.split
 
       answer_array.uniq.each do |word|
-        hashed_words << word if (word =~ /#/) == 0
+        unless (word =~ /#[A-Za-zа-яА-Я]{1,30}/)  == nil
+          hashed_words << word.delete('#')  if (word =~ /[?!]+/) == nil
+        end
       end
     end
 
