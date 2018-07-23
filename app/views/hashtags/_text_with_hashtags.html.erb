@@ -1,0 +1,10 @@
+<% text.each do |word| %>
+  <% if question.hashtags.map(&:name).include?(word.delete('#'))%>
+    <%= link_to "#{word}",
+                :controller => "hashtags",
+                :action => "show",
+                :name => word.delete('#')  %>
+  <% else %>
+    <%= word %>
+  <% end %>
+<% end %>

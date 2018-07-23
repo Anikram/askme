@@ -1,37 +1,17 @@
 <% question ||= nil %>
-<% text= question.text.split  %>
+<% text = question.text.split  %>
 <% answer = question.answer.split unless question.answer.nil? %>
 <% action_icon = question.answer.blank? ? 'reply' : 'pencil' %>
 
 <div class="question">
   <div class="question-content">
     <div class="question-text text-lead">
-      <% text.each do |word| %>
-        <% if question.hashtags.map(&:name).include?(word.delete('#'))%>
-          <%= link_to "#{word}",
-                      :controller => "hashtags",
-                      :action => "show",
-                      :name => word.delete('#')  %>
-        <% else %>
-          <%= word %>
-        <% end %>
-      <% end %>
+      <%= render partial: 'hashtags/text_with_hashtags', locals: {text: text, question: question} %>
     </div>
 
     <% if question.answer.present? %>
       <div class="question-answer text-lead">
-        <% unless answer.nil? %>
-          <% answer.each do |word| %>
-            <% if question.hashtags.map(&:name).include?(word.delete('#'))%>
-              <%= link_to "#{word}",
-                          :controller => "hashtags",
-                          :action => "show",
-                          :name => word.delete('#')  %>
-            <% else %>
-              <%= word %>
-            <% end %>
-          <% end %>
-        <% end %>
+        <%= render partial: 'hashtags/text_with_hashtags', locals: {text: answer, question: question} %>
       </div>
     <% end %>
 
