@@ -21,7 +21,7 @@
 
     <div class="question-text">
       <% if question.author.present? %>
-        <span class="text-small">Автор: </span>
+        <span class="text-small"> Автор </span>
         <%= link_to "@#{question.author.username}", user_path(question.author) %>
       <% else %>
         Аноним
@@ -29,7 +29,7 @@
     </div>
 
     <div class="question-text">
-      <span class="text-small">Вопрос задан пользователю: </span>
+      <span class="text-small">Вопрос задан</span>
       <%= link_to "@#{question.user.username}", user_path(question.user) %>
     </div>
 
@@ -39,7 +39,7 @@
     <div class="question-actions">
       <%= link_to fa_icon(action_icon), edit_question_path(question) %>
       <%= link_to fa_icon('trash-o'), question_path(question),
-                  method: :delete, data: {confirm: 'Точно удалить вопрос?'}%>
+                  method: :delete, data: {confirm: t('views.questions.messages.confirm_deletion')}%>
     </div>
   <% end %>
 </div>

@@ -1,23 +1,21 @@
-<%# Страница с формой логина %>
 <div class="container content-wrapper buffer-both">
-  <h1 class="title-medium">Войти на сайт</h1>
+  <h1 class="title-medium"><% t('views.sessions.labels.new.pagetitle') %></h1>
 
   <div class="column-1-2">
     <div class="form">
-      <%# Рисуем форму, которая будет отправлена по адресу /sessions %>
       <%= form_tag session_path do %>
         <div class="form-field">
-          <%= label_tag :email, 'Логин (email)', class: 'form-label' %>
+          <%= label_tag :email, t('views.sessions.labels.new.login'), class: 'form-label' %>
           <%= text_field_tag :email, params[:email], class: 'form-text-field' %>
         </div>
 
         <div class="form-field">
-          <%= label_tag :password, 'Пароль', class: 'form-label' %>
+          <%= label_tag :password, t('views.sessions.labels.new.password'), class: 'form-label' %>
           <%= password_field_tag :password, '', class: 'form-text-field' %>
         </div>
 
         <div class="form-action">
-          <%= submit_tag "Войти", class: 'button button-dark button-small' %>
+          <%= submit_tag t('views.sessions.buttons.sign_in'), class: 'button button-dark button-small' %>
         </div>
       <% end %>
     </div>

@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   before_action :load_user, except: [:index, :new, :create]
   before_action :authorize_user, except: [:index, :new, :create, :show]
 
@@ -27,14 +26,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def destroy
     session[:user_id] = nil
-    if @user.destroy
-      redirect_to root_url, notice: 'Вы успешно удалили свой профиль!'
-    end
+    redirect_to root_url, notice: 'Вы успешно удалили свой профиль!' if @user.destroy
   end
 
   def update
@@ -56,6 +52,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
     params.require(:user).permit(:email, :password, :password_confirmation,
                                  :name, :username, :avatar_url, :bgcolor)
@@ -84,6 +81,6 @@ class UsersController < ApplicationController
   end
 
   def hashtags_with_questions
-    Hashtag.joins(:questions).where("question_id IS NOT NULL")
+    Hashtag.joins(:questions).where('question_id IS NOT NULL')
   end
 end

@@ -15,37 +15,37 @@
         <% end %>
 
         <div class="form-field">
-          <%= f.label :email, 'Логин (email)', class: 'form-label' %>
+          <%= f.label :email, t('views.users.labels.login'), class: 'form-label' %>
           <%= f.text_field :email, class: 'form-text-field' %>
         </div>
 
         <div class="form-field">
-          <%= f.label :username, 'Никнейм', class: 'form-label' %>
+          <%= f.label :username, t('views.users.labels.username'), class: 'form-label' %>
           <%= f.text_field :username, class: 'form-text-field' %>
         </div>
 
         <div class="form-field">
-          <%= f.label :name, 'Имя', class: 'form-label' %>
+          <%= f.label :name, t('views.users.labels.name'), class: 'form-label' %>
           <%= f.text_field :name, class: 'form-text-field' %>
         </div>
 
         <div class="form-field">
-          <%= f.label :bgcolor, 'Цвет фона страницы (hex)', class: 'form-label' %>
+          <%= f.label :bgcolor, t('views.users.labels.bg_color'), class: 'form-label' %>
           <%= f.text_field :bgcolor, class: 'form-text-field' %>
         </div>
 
         <div class="form-field">
-          <%= f.label :password, 'Пароль', class: 'form-label' %>
+          <%= f.label :password, t('views.users.labels.password'), class: 'form-label' %>
           <%= f.password_field :password, class: 'form-text-field' %>
         </div>
 
         <div class="form-field">
-          <%= f.label :password_confirmation, 'Подтверждение пороля', class: 'form-label' %>
+          <%= f.label :password_confirmation, t('views.users.labels.password_confirmation'), class: 'form-label' %>
           <%= f.password_field :password_confirmation, class: 'form-text-field' %>
         </div>
 
         <div class="form-action">
-          <%= f.submit 'Зарегестрироваться', class: 'button button-small button-dark' %>
+          <%= f.submit t('views.users.buttons.sign_up'), class: 'button button-small button-dark' %>
         </div>
       <% end %>
     </div>

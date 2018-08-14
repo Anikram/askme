@@ -1,7 +1,5 @@
-#encoding: utf-8
-
+# :nodoc:
 class Question < ApplicationRecord
-
   attr_accessor :namee #-invisible Captcha settings
 
   belongs_to :user
@@ -10,42 +8,37 @@ class Question < ApplicationRecord
   has_and_belongs_to_many :hashtags, dependent: :destroy
 
   validates :text, :user, presence: true
-  validates_length_of :text, :minimum => 1, :maximum => 255 #49-1 text length validation
+  validates_length_of :text, minimum: 1, maximum: 255
 
   before_save :create_question_hashtags
 
-
   def create_question_hashtags
-    self.hashtags.clear
+    hashtags.clear
 
-    hashed_words = get_hash_words_from_text
+    hashed_words = convert_words_into_hashtags
 
     hashed_words.each do |word|
-      self.hashtags << Hashtag.find_or_create_by(name: word.delete('[]#""'))
+      hashtags << Hashtag.find_or_create_by(name: word.delete('[]#""'))
     end
   end
 
-  def get_hash_words_from_text
+  def convert_words_into_hashtags
     hashed_words = []
-
-    text_array = self.text.split
-
+    text_array = text.split
     text_array.each do |word|
-       unless (word =~ /#[A-Za-zа-яА-Я]{1,30}/) == nil
-         hashed_words << word.delete('#') if (word =~ /[?!]+/) == nil
-       end
-    end
-
-    unless self.answer.nil?
-      answer_array = self.answer.split
-
-      answer_array.uniq.each do |word|
-        unless (word =~ /#[A-Za-zа-яА-Я]{1,30}/)  == nil
-          hashed_words << word.delete('#')  if (word =~ /[?!]+/) == nil
-        end
+      unless (word =~ /#[A-Za-zа-яА-Я]{1,30}/).nil?
+        hashed_words << word.delete('#') if (word =~ /[?!]+/).nil?
       end
     end
 
+    unless answer.nil?
+      answer_array = answer.split
+      answer_array.uniq.each do |word|
+        unless (word =~ /#[A-Za-zа-яА-Я]{1,30}/).nil?
+          hashed_words << word.delete('#') if (word =~ /[?!]+/).nil?
+        end
+      end
+    end
     hashed_words
   end
 end
