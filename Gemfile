@@ -12,6 +12,8 @@ gem 'rails_12factor'
 
 gem 'rubocop'
 
+gem 'sprockets', '~> 3.7.2'
+
 gem 'uglifier'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
@@ -23,6 +25,7 @@ gem 'recaptcha', require: 'recaptcha/rails'
 gem 'invisible_captcha'
 
 gem 'i18n'
+
 
 group :production do
   gem 'pg'
