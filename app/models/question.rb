@@ -24,6 +24,7 @@ class Question < ApplicationRecord
 
   def convert_words_into_hashtags
     hashed_words = []
+
     text_array = text.split
     text_array.each do |word|
       unless (word =~ /#[A-Za-zа-яА-Я]{1,30}/).nil?
