@@ -6,7 +6,7 @@ RSpec.describe Question, type: :model do
 
     it 'returns array of words' do
       tags = question.convert_words_into_hashtags
-      expect(tags.flatten).to eq ['two five no shure']
+      expect(tags.flatten).to eq %w[two five no shure]
     end
   end
 end

@@ -26,20 +26,12 @@ class Question < ApplicationRecord
     hashed_words = []
 
     text_array = text.split
+    text_array += answer.split if answer
+
     text_array.each do |word|
-      unless (word =~ /#[A-Za-zа-яА-Я]{1,30}/).nil?
-        hashed_words << word.delete('#') if (word =~ /[?!]+/).nil?
-      end
+      hashed_words << word.delete('#') if word =~ /\A#[\p{L}_]{1,30}\Z/
     end
 
-    unless answer.nil?
-      answer_array = answer.split
-      answer_array.uniq.each do |word|
-        unless (word =~ /#[A-Za-zа-яА-Я]{1,30}/).nil?
-          hashed_words << word.delete('#') if (word =~ /[?!]+/).nil?
-        end
-      end
-    end
-    hashed_words
+    hashed_words.flatten
   end
 end
