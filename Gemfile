@@ -26,7 +26,6 @@ gem 'invisible_captcha'
 
 gem 'i18n'
 
-
 group :production do
   gem 'pg'
 end
