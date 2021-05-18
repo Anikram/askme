@@ -16,7 +16,7 @@ gem 'sprockets', '~> 3.7.2'
 
 gem 'uglifier'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 4.3'
 
 gem 'jquery-rails'
 # Use SCSS for stylesheets
